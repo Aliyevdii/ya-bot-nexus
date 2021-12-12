@@ -21,35 +21,35 @@ spam_chats = []
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   await event.reply(
-    "__**I'm MentionAll Bot**, I can mention almost all members in group or channel 👻\nClick **/help** for more information__\n\n Follow [@AnjanaMadu](https://github.com/AnjanaMadu) on Github",
+    "__**Mən Nexus Tagger Bot**am, qrup və ya kanalda demək olar ki, bütün üzvləri qeyd edə bilərəm 👻\nCilck **/yardım** Daha ətraflı məlumat üçün",
     link_preview=False,
     buttons=(
       [
-        Button.url('📣 Channel', 'https://t.me/harp_tech'),
-        Button.url('📦 Source', 'https://github.com/AnjanaMadu/MentionAllBot')
+        Button.url('📣 Gurup', 'https://t.me/iron_Blood_Gurup'),
+        Button.url('📦 Support', 'https://t.me/NEXUS_MMC')
       ]
     )
   )
 
-@client.on(events.NewMessage(pattern="^/help$"))
+@client.on(events.NewMessage(pattern="^/yardım$"))
 async def help(event):
-  helptext = "**Help Menu of MentionAllBot**\n\nCommand: /mentionall\n__You can use this command with text what you want to mention others.__\n`Example: /mentionall Good Morning!`\n__You can you this command as a reply to any message. Bot will tag users to that replied messsage__.\n\nFollow [@AnjanaMadu](https://github.com/AnjanaMadu) on Github"
+  helptext = "**Nexus Tagger Bot-un Yardım Menyusu**\n\nəmr: /tag\n_Başqalarını qeyd etmək istədiyiniz mətnlə bu əmrdən istifadə edə bilərsiniz.__\n`Misal: /tag Sabahınız Xeyir!`\n_Bu əmri istənilən mesaja cavab olaraq verə bilərsiniz. Bot istifadəçiləri həmin cavab mesajına işarələyəcək."
   await event.reply(
     helptext,
     link_preview=False,
     buttons=(
       [
-        Button.url('📣 Channel', 'https://t.me/harp_tech'),
-        Button.url('📦 Source', 'https://github.com/AnjanaMadu/MentionAllBot')
+        Button.url('📣 Gurup', 'https://t.me/iron_Blood_Gurup'),
+        Button.url('📦 Support', 'https://t.me/NEXUS_MMC')
       ]
     )
   )
   
-@client.on(events.NewMessage(pattern="^/mentionall ?(.*)"))
+@client.on(events.NewMessage(pattern="^/tag ?(.*)"))
 async def mentionall(event):
   chat_id = event.chat_id
   if event.is_private:
-    return await event.respond("__This command can be use in groups and channels!__")
+    return await event.respond("_ Bu əmr qruplarda və kanallarda istifadə edilə bilər!__")
   
   is_admin = False
   try:
@@ -71,10 +71,10 @@ async def mentionall(event):
     ):
       is_admin = True
   if not is_admin:
-    return await event.respond("__Only admins can mention all!__")
+    return await event.respond("__Yalnız adminlər hamısını qeyd edə bilər!__")
   
   if event.pattern_match.group(1) and event.is_reply:
-    return await event.respond("__Give me one argument!__")
+    return await event.respond("__Mənə bir arqument verin!__")
   elif event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.group(1)
@@ -82,9 +82,9 @@ async def mentionall(event):
     mode = "text_on_reply"
     msg = await event.get_reply_message()
     if msg == None:
-        return await event.respond("__I can't mention members for older messages! (messages which are sent before I'm added to group)__")
+        return await event.respond("__Köhnə mesajlar üçün üzvləri qeyd edə bilmərəm! (qrupa əlavə edilməzdən əvvəl göndərilən mesajlar)__")
   else:
-    return await event.respond("__Reply to a message or give me some text to mention others!__")
+    return await event.respond("__Mesajı cavablandırın və ya başqalarını qeyd etmək üçün mənə mətn yazın!__")
   
   spam_chats.append(chat_id)
   usrnum = 0
@@ -108,16 +108,16 @@ async def mentionall(event):
   except:
     pass
 
-@client.on(events.NewMessage(pattern="^/cancel$"))
+@client.on(events.NewMessage(pattern="^/dur$"))
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
-    return await event.respond('__There is no proccess on going...__')
+    return await event.respond('_ Heç bir proses yoxdur...__)
   else:
     try:
       spam_chats.remove(event.chat_id)
     except:
       pass
-    return await event.respond('__Stopped.__')
+    return await event.respond('__Dayandı🤓.__')
 
 print(">> BOT STARTED <<")
 client.run_until_disconnected()
