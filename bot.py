@@ -111,7 +111,7 @@ async def mentionall(event):
 @client.on(events.NewMessage(pattern="^/dur$"))
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
-    return await event.respond('_ Heç bir proses yoxdur...__)
+    return await event.respond('_ Heç bir proses yoxdur...__')
   else:
     try:
       spam_chats.remove(event.chat_id)
