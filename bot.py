@@ -21,7 +21,7 @@ spam_chats = []
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   await event.reply(
-    "__**Salam mən @A_l_i_y_e_v_d_i tərəfindən yaradılan tag botuyam  məni guruplara ekləyərək bütün üzvləri tag edə bilərəm🤓\n/yardım**yazaraq daha ətraflı məlumat ala bilərsiniz",
+    "**Salam mən @A_l_i_y_e_v_d_i tərəfindən yaradılan tag botuyam  məni guruplara ekləyərək bütün üzvləri tag edə bilərəm🤓\n/yardım ** yazaraq daha ətraflı məlumat ala bilərsiniz",
     link_preview=False,
     buttons=(
       [
