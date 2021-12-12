@@ -21,26 +21,26 @@ spam_chats = []
 @client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   await event.reply(
-    "__**Mən Nexus Tagger Bot**am, qrup və ya kanalda demək olar ki, bütün üzvləri qeyd edə bilərəm 👻\nCilck **/yardım** Daha ətraflı məlumat üçün",
+    "__**Salam mən @A_l_i_y_e_v_d_i tərəfindən yaradılan tag botuyam  məni guruplara ekləyərək bütün üzvləri tag edə bilərəm🤓\n/yardım**yazaraq daha ətraflı məlumat ala bilərsiniz",
     link_preview=False,
     buttons=(
       [
-        Button.url('📣 Gurup', 'https://t.me/iron_Blood_Gurup'),
-        Button.url('📦 Support', 'https://t.me/NEXUS_MMC')
+        Button.url('💭 Gurup', 'https://t.me/iron_Blood_Gurup'),
+        Button.url('🌐 Support', 'https://t.me/NEXUS_MMC')
       ]
     )
   )
 
 @client.on(events.NewMessage(pattern="^/yardım$"))
 async def help(event):
-  helptext = "**Nexus Tagger Bot-un Yardım Menyusu**\n\nəmr: /tag\n_Başqalarını qeyd etmək istədiyiniz mətnlə bu əmrdən istifadə edə bilərsiniz.__\n`Misal: /tag Sabahınız Xeyir!`\n_Bu əmri istənilən mesaja cavab olaraq verə bilərsiniz. Bot istifadəçiləri həmin cavab mesajına işarələyəcək."
+  helptext = "**#Nexus Tag Bot'un Kömək Menyusu**\n\nTag Etmək Üçün: /tag\nBaşqalarını qeyd etmək istədiyiniz mətnlə bu əmrdən istifadə edə bilərsiniz🤓\nMisal: `/tag Sabahınız Xeyir👻🤍`\nBu əmri istənilən mesaja cavab olaraq verə bilərsiniz. Bot istifadəçiləri həmin cavab mesajına işarələyəcək."
   await event.reply(
     helptext,
     link_preview=False,
     buttons=(
       [
-        Button.url('📣 Gurup', 'https://t.me/iron_Blood_Gurup'),
-        Button.url('📦 Support', 'https://t.me/NEXUS_MMC')
+        Button.url('💭 Gurup', 'https://t.me/iron_Blood_Gurup'),
+        Button.url('🌐 Support', 'https://t.me/NEXUS_MMC')
       ]
     )
   )
@@ -49,7 +49,7 @@ async def help(event):
 async def mentionall(event):
   chat_id = event.chat_id
   if event.is_private:
-    return await event.respond("_ Bu əmr qruplarda və kanallarda istifadə edilə bilər!__")
+    return await event.respond(" Bu əmr qruplarda və kanallarda istifadə edilə bilər!")
   
   is_admin = False
   try:
@@ -71,10 +71,10 @@ async def mentionall(event):
     ):
       is_admin = True
   if not is_admin:
-    return await event.respond("__Yalnız adminlər hamısını qeyd edə bilər!__")
+    return await event.respond("Yalnız adminlər hamısını qeyd edə bilər!")
   
   if event.pattern_match.group(1) and event.is_reply:
-    return await event.respond("__Mənə bir arqument verin!__")
+    return await event.respond("Mənə bir arqument verin!")
   elif event.pattern_match.group(1):
     mode = "text_on_cmd"
     msg = event.pattern_match.group(1)
@@ -82,9 +82,9 @@ async def mentionall(event):
     mode = "text_on_reply"
     msg = await event.get_reply_message()
     if msg == None:
-        return await event.respond("__Köhnə mesajlar üçün üzvləri qeyd edə bilmərəm! (qrupa əlavə edilməzdən əvvəl göndərilən mesajlar)__")
+        return await event.respond("Köhnə mesajlar üçün üzvləri qeyd edə bilmərəm! (qrupa əlavə edilməzdən əvvəl göndərilən mesajlar)")
   else:
-    return await event.respond("__Mesajı cavablandırın və ya başqalarını qeyd etmək üçün mənə mətn yazın!__")
+    return await event.respond("Mesajı cavablandırın və ya başqalarını qeyd etmək üçün mənə mətn yazın!")
   
   spam_chats.append(chat_id)
   usrnum = 0
@@ -111,13 +111,13 @@ async def mentionall(event):
 @client.on(events.NewMessage(pattern="^/dur$"))
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
-    return await event.respond('_ Heç bir proses yoxdur...__')
+    return await event.respond('Heç bir proses yoxdur...')
   else:
     try:
       spam_chats.remove(event.chat_id)
     except:
       pass
-    return await event.respond('__Dayandı🤓.__')
+    return await event.respond('Dayandı🤓.')
 
 print(">> BOT STARTED <<")
 client.run_until_disconnected()
